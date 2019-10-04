@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './Table.scss';
 import Days from '../Days/Days';
-// import AddHabit from '../AddHabit/AddHabit';
+import AddHabit from '../AddHabit/AddHabit';
 import AddHabitBtn from '../AddHabit/AddHabitBtn/AddHabitBtn';
 
 class Table extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { habits: [] };
+		this.state = {
+			habits: [],
+			isAddHabit: false
+		};
 	}
 
 	componentDidMount() {
@@ -15,6 +18,10 @@ class Table extends Component {
 			this.setState({ habits: data });
 		});
 	}
+
+	handleAddHabit = () => {
+		this.setState((prevState) => ({ isAddHabit: !prevState.isAddHabit }));
+	};
 
 	render() {
 		const habitsList = this.state.habits.map((habit, i) => (
@@ -27,7 +34,8 @@ class Table extends Component {
 			<div className="Table">
 				<div className="habits">
 					{habitsList}
-					<AddHabitBtn />
+					<AddHabitBtn onShowAddHabit={this.handleAddHabit} />
+					{this.state.isAddHabit ? <AddHabit onShowAddHabit={this.handleAddHabit} /> : ''}
 				</div>
 				<Days />
 			</div>
