@@ -9,7 +9,7 @@ class Table extends Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:4000/habits/').then((response) => response.json()).then((data) => {
+		fetch('http://localhost:4000/habits/list').then((response) => response.json()).then((data) => {
 			this.setState({ habits: data });
 		});
 	}

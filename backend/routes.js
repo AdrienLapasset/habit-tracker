@@ -1,34 +1,35 @@
 module.exports = function(app, express) {
 	const habitRoutes = express.Router();
 
+	let HabitList = require('./habitList.model');
 	let Habit = require('./habit.model');
 
-	habitRoutes.route('/').get(function(req, res) {
-		Habit.find(function(err, habits) {
+	habitRoutes.route('/list').get(function(req, res) {
+		HabitList.find(function(err, habitList) {
 			if (err) {
 				console.log(err);
 			} else {
-				res.json(habits);
+				res.json(habitList);
 			}
 		});
+	});
+
+	habitRoutes.route('/add').post(function(req, res) {
+		let habitList = new HabitList(req.body);
+		habitList
+			.save()
+			.then((habitList) => {
+				res.status(200).json({ habitList: 'habit added successfully', habitList });
+			})
+			.catch((err) => {
+				res.status(400).send('adding new habit failed');
+			});
 	});
 
 	habitRoutes.route('/byDay/:date').get(function(req, res) {
 		Habit.find({ date: new Date(req.params.date) }).then((habits) => {
 			res.json(habits);
 		});
-	});
-
-	habitRoutes.route('/add').post(function(req, res) {
-		let habit = new Habit(req.body);
-		habit
-			.save()
-			.then((habit) => {
-				res.status(200).json({ habit: 'habit added successfully', habit });
-			})
-			.catch((err) => {
-				res.status(400).send('adding new habit failed');
-			});
 	});
 
 	habitRoutes.route('/update/:id').post(function(req, res) {
