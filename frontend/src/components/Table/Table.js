@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Days from '../Days/Days';
 import './Table.scss';
+import Days from '../Days/Days';
+// import AddHabit from '../AddHabit/AddHabit';
+import AddHabitBtn from '../AddHabit/AddHabitBtn/AddHabitBtn';
 
 class Table extends Component {
 	constructor(props) {
@@ -23,7 +25,10 @@ class Table extends Component {
 
 		return (
 			<div className="Table">
-				<div className="habits">{habitsList}</div>
+				<div className="habits">
+					{habitsList}
+					<AddHabitBtn />
+				</div>
 				<Days />
 			</div>
 		);

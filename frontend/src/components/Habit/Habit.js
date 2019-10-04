@@ -12,7 +12,12 @@ class Habit extends Component {
 		const target = e.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 
+		let habit = this.state.habit;
+		habit.isChecked = value;
+		this.setState({ habit: habit });
+
 		fetch('http://localhost:4000/habits/update/' + this.props.habit._id, {
+			headers: { 'Content-Type': 'application/json' },
 			method: 'POST',
 			body: JSON.stringify({ isChecked: value })
 		})
