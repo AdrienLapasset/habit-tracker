@@ -1,8 +1,20 @@
 module.exports = function(app, express) {
+	var addHabits = require('./addHabits');
+
 	const habitRoutes = express.Router();
 
 	let HabitList = require('./habitList.model');
 	let Habit = require('./habit.model');
+
+	habitRoutes.route('/').get(function(req, res) {
+		Habit.find(function(err, habits) {
+			if (err) {
+				console.log(err);
+			} else {
+				res.json(habits);
+			}
+		});
+	});
 
 	habitRoutes.route('/list').get(function(req, res) {
 		HabitList.find(function(err, habitList) {
@@ -19,6 +31,7 @@ module.exports = function(app, express) {
 		habitList
 			.save()
 			.then((habitList) => {
+				addHabits(req.body.name);
 				res.status(200).json({ habitList: 'habit added successfully', habitList });
 			})
 			.catch((err) => {
