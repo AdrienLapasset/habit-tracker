@@ -1,0 +1,18 @@
+{
+	"name": "habit-tracker",
+	"version": "1.0.0",
+	"scripts": {
+		"backend": "cd backend && npx nodemon server",
+		"frontend": "cd frontend && yarn start"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AdrienLapasset/habit-tracker.git"
+	},
+	"author": "Adrien Lapasset",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/AdrienLapasset/habit-tracker/issues"
+	},
+	"homepage": "https://github.com/AdrienLapasset/habit-tracker#readme"
+}

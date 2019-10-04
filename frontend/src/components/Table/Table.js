@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Day from '../Day/Day';
+import Days from '../Days/Days';
 import './Table.scss';
 
 class Table extends Component {
@@ -9,22 +9,22 @@ class Table extends Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:4000/habits/')
-			.then((response) => response.json())
-			.then((data) => this.setState({ habits: data }));
+		fetch('http://localhost:4000/habits/').then((response) => response.json()).then((data) => {
+			this.setState({ habits: data });
+		});
 	}
 
 	render() {
-		const renderHabits = this.state.habits.map((habit, i) => (
-			<div key={i} className="habits__item">
+		const habitsList = this.state.habits.map((habit, i) => (
+			<div key={i} className="habit">
 				{habit.name}
 			</div>
 		));
-		const renderDays = this.state.habits.map((habit, i) => <Day habit={habit} key={i} />);
+
 		return (
 			<div className="Table">
-				<div className="habits">{renderHabits}</div>
-				{renderDays}
+				<div className="habits">{habitsList}</div>
+				<Days />
 			</div>
 		);
 	}

@@ -1,23 +1,12 @@
 .Table {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 10px;
-	grid-auto-rows: minmax(100px, auto);
+	display: flex;
 }
 
 .habits {
-	padding-top: 35px;
-	grid-column: 1;
+	padding-top: 20px;
+	margin-right: 20px;
 
-	&__item {
-		padding: 10px;
-		text-align: right;
-	}
-}
-
-.col {
-	& > * {
-		padding: 10px;
-		text-align: center;
+	.habit {
+		margin-top: 10px;
 	}
 }
