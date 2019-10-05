@@ -31,7 +31,7 @@ module.exports = function(app, express) {
 		habitList
 			.save()
 			.then((habitList) => {
-				addHabits(req.body.name);
+				addHabits.fillDate(req.body.name);
 				res.status(200).json({ habitList: 'habit added successfully', habitList });
 			})
 			.catch((err) => {
