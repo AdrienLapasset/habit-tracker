@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './Day.scss';
+import './Habit.scss';
 
 class Habit extends Component {
 	constructor(props) {
@@ -27,8 +27,7 @@ class Habit extends Component {
 
 	render() {
 		return (
-			<div className="habit">
-				{this.state.habit.name}
+			<div className="Habit">
 				<input
 					name={this.state.habit.name}
 					type="checkbox"
